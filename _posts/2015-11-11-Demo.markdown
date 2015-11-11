@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Demo"
+date:   2015-11-11 00:10:00
+categories: jekyll update
+---
+# How to run the algorithm?
+
+Demo is located [here][demo]. To run the algorithm input reaction to the panel on the top, and click `proceed`.  
+
+Reaction should be in the following format:  
+```
+SMILES formulas of the reactants >> SMILES formulas of the products
+```  
+Hint: Concatenate SMILES formulas for multiple molecules into one using `.` symbol.
+
+# How to read the results?
+
+Main result are two svg images containing reactants and products with annotated atoms. When atom from reactant is mapped to the atom of the product they have the same annotation. Additionally atoms and bonds may have colors.
+
+On the left there is a drop down list where one of the multiple mappings can be selected.
+
+[demo]:        http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/
