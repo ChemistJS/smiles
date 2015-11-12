@@ -10,7 +10,7 @@ hideFromIndex: true
 
 Wejściem do algorytmu ustawiania pozycji jest graf cząsteczki.
 
-Przed przystąpieniem do ustalania pozycji graf musi mieć ustalone struktury: spójne części, dwuspójne składowe, pierścienie (SSSR). Ich wykrywanie odbywa się w module `SMILES.detectStructure`.
+Przed przystąpieniem do ustalania pozycji graf musi mieć ustalone struktury: spójne części, dwuspójne składowe, pierścienie (wykrywanie za pomocą algorytmu SSSR - smalles set of smallest rings). Ich wykrywanie odbywa się w module `SMILES.detectStructure`.
 
 # Odwracanie pierścieni
 
@@ -26,7 +26,7 @@ Aktualnie w naszej implementacji błąd odwracania pierścieni jest sygnalizowan
 
 # Zachłanne ustawianie pierścieni
 
-Na tym etapie każda dwuspójna składowa przetwarzana jest osobno, a współrzędne wierzchołków, które powstają są obliczane względem tej składowej. Na przykład wierzchołek, który znajduje się na styku wielu dwuspójnych składowych będzie miał wygenerowanych wiele różnych współrzędnych.
+Na tym etapie każda dwuspójna składowa przetwarzana jest osobno, a współrzędne wierzchołków, które powstają, są obliczane względem tej składowej. Na przykład wierzchołek, który znajduje się na styku wielu dwuspójnych składowych, będzie miał wygenerowanych wiele różnych współrzędnych.
 
 Opisując działanie tego kroku krótko: mając ustawiony pewien zbiór wierzchołków próbujemy ustawić kolejne tak, aby pierścienie występujące w grafie były wielokątami foremnymi. Zawsze rozważamy jeden pierścień na raz, nie zastanawiamy się nad tym co będzie dalej, a ustawionych raz wierzchołków już nie ruszamy - jest to algorytm zachłanny.
 
@@ -70,7 +70,7 @@ Efektem tych operacji jest uzyskanie, dla każdego wierzchołka, tablic pożąda
 
 Średnia może być ważona - na przykład jeśli zależy nam aby mniejsze pierścienie miały większy "priorytet foremności" możemy pozycje wynikające z mniejszych pierścieni brać z większą wagą niż te wynikające z pierścieni dużych.
 
-# Uzgadnianie dwuspójnch składowych
+# Uzgadnianie dwuspójnych składowych
 
 Na tym etapie mamy ustawione pozycje każdego wierzchołka wewnątrz każdej dwuspójnej składowej do której on należy. Aby uzyskać pozycje przydatne do wizualizacji należy uzgodnić współrzędne wewnątrz składowych. Przez uzgadnianie należy rozumieć znalezienie dla każdej składowej wektora translacji i kąta rotacji, które trzeba zastosować do współrzędnych wewnątrz tej składowej aby uzyskać współrzędne absolutne.
 
