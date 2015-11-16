@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Examples"
+date:   2015-11-11 00:09:00
+categories: jekyll update
+---
+# Some example reactions
+
+* [example1]\: Multiple solutions (oxygen indices change).  
+`C=CCC(C1=CC=CC=C1)C2=CC=CC=C2.C12BC(CCC2)CCC1.OO>>OCCCC(C1=CC=CC=C1)C2=CC=CC=C2.OB1C2CCCC1CCC2`
+
+* [example2]  
+`ClC(C1=CC=CC=C1)=O.C1=CC=CC=C1>>O=C(C1=CC=CC=C1)C2=CC=CC=C2.[H]Cl`
+
+
+
+[example1]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=C=CCC(C1=CC=CC=C1)C2=CC=CC=C2.C12BC(CCC2)CCC1.OO>>OCCCC(C1=CC=CC=C1)C2=CC=CC=C2.OB1C2CCCC1CCC2
+[example2]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=ClC(C1=CC=CC=C1)=O.C1=CC=CC=C1>>O=C(C1=CC=CC=C1)C2=CC=CC=C2.[H]Cl
+
+[ex]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=
