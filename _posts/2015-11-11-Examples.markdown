@@ -13,7 +13,7 @@ categories: jekyll update
 `ClC(C1=CC=CC=C1)=O.C1=CC=CC=C1>>O=C(C1=CC=CC=C1)C2=CC=CC=C2.[H]Cl`
 
 * [example3]\: Simple chemical synthesis.  
-`O.[C](=O)=O>>C(=O)(O)O`
+`O.C(=O)=O>>C(=O)(O)O`
 
 * [example4]\: Simple subsitution.  
 `CC.ClCl>>CCCl.Cl`
@@ -22,7 +22,7 @@ categories: jekyll update
 
 [example1]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=C=CCC(C1=CC=CC=C1)C2=CC=CC=C2.C12BC(CCC2)CCC1.OO>>OCCCC(C1=CC=CC=C1)C2=CC=CC=C2.OB1C2CCCC1CCC2
 [example2]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=ClC(C1=CC=CC=C1)=O.C1=CC=CC=C1>>O=C(C1=CC=CC=C1)C2=CC=CC=C2.[H]Cl
-[example3]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=O.[C](=O)=O>>C(=O)(O)O
+[example3]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=O.C(=O)=O>>C(=O)(O)O
 [example4]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=CC.ClCl>>CCCl.Cl
 
 [ex]:    http://students.mimuw.edu.pl/~mk305158/smiles/branches/origin/janr-atom-mapping-interface-with-new-coordinates/demo/atom_mapping/#?smiles=
