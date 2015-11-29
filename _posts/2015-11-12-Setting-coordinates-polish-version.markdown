@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Setting coordinates for atoms - polish version"
+title:  "Setting coordinates for atoms - Polish version"
 date:   2015-11-12 00:30:00
 categories:
 hideFromIndex: true
@@ -10,7 +10,7 @@ hideFromIndex: true
 
 Wejściem do algorytmu ustawiania pozycji jest graf cząsteczki.
 
-Przed przystąpieniem do ustalania pozycji graf musi mieć ustalone struktury: spójne części, dwuspójne składowe, pierścienie (wykrywanie za pomocą algorytmu SSSR - smalles set of smallest rings). Ich wykrywanie odbywa się w module `SMILES.detectStructure`.
+Przed przystąpieniem do ustalania pozycji graf musi mieć ustalone struktury: spójne części, dwuspójne składowe, pierścienie (wykrywanie za pomocą algorytmu SSSR - smallest set of smallest rings). Ich wykrywanie odbywa się w module `SMILES.detectStructure`.
 
 # Odwracanie pierścieni
 
@@ -72,7 +72,7 @@ Efektem tych operacji jest uzyskanie, dla każdego wierzchołka, tablic pożąda
 
 # Uzgadnianie dwuspójnych składowych
 
-Na tym etapie mamy ustawione pozycje każdego wierzchołka wewnątrz każdej dwuspójnej składowej do której on należy. Aby uzyskać pozycje przydatne do wizualizacji należy uzgodnić współrzędne wewnątrz składowych. Przez uzgadnianie należy rozumieć znalezienie dla każdej składowej wektora translacji i kąta rotacji, które trzeba zastosować do współrzędnych wewnątrz tej składowej aby uzyskać współrzędne absolutne.
+Na tym etapie mamy ustawione pozycje każdego wierzchołka wewnątrz każdej dwuspójnej składowej do której on należy. Aby uzyskać pozycje przydatne do wizualizacji należy uzgodnić współrzędne pomiędzy składowymi. Przez uzgadnianie należy rozumieć znalezienie dla każdej składowej wektora translacji i kąta rotacji, które trzeba zastosować do współrzędnych wewnątrz tej składowej aby uzyskać współrzędne absolutne.
 
 Punktem wyjścia do znalezienia odpowiednich przekształceń będą wierzchołki, które należą do więcej niż jednej składowej - nazywam je złączeniami (junctions). Są tutaj dwa warunki:
 
