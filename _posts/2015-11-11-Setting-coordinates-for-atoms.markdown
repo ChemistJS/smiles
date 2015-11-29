@@ -9,7 +9,7 @@ categories: jekyll update
 
 The input to the positioning algorithm is a graph of the molecule.
 
-Before positioning the graph must have established structures: coherent parts, biconnected components, rings (detected using an SSSR algorithm - smallest set of smallest rings). Their detection takes place in the module `SMILES.detectStructure`.
+Before positioning the graph must have established structures: coherent parts, biconnected components and rings. Rings are detected using an SSSR algorithm (smallest set of smallest rings [1]), which chooses the most "basic" rings from all the rings in the graph. Detection of this structures is fairly simple, so we assume it is done beforehand.
 
 # Flipping the rings
 
@@ -85,5 +85,9 @@ In the current implementation, first in suffix (it has no meaning) order local t
 # Positioning connected parts
 
 The final step is to move apart coherent subgraphs so they will be drawn in other places and will not overlap graphically. For this, any coherent part of the graph gets calculated maximal and minimal x and y coordinates reached by the vertices of the part. Then, based on the calculated values subgraphs are moved so they will be centered vertically and horizontally stacked one behind the other, with predetermined intervals in between.
+
+# Bibliography
+
+ * [1] Antonio Zamora, An Algorithm for Finding the Smallest Set of Smallest Rings, Journal of Chemical Information and Computer Sciences, 1976
 
 There is also a version of this document in Polish [here]({{ site.baseurl }}{% post_url 2015-11-12-Setting-coordinates-polish-version %}).
