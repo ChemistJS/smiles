@@ -172,7 +172,11 @@ In the current implementation, first in suffix (it has no meaning) order local t
 
 The final step is to move apart coherent subgraphs so they will be drawn in other places and will not overlap graphically. For this, any coherent part of the graph gets calculated maximal and minimal x and y coordinates reached by the vertices of the part. Then, based on the calculated values subgraphs are moved so they will be centered vertically and horizontally stacked one behind the other, with predetermined intervals in between.
 
-	// TODO
+	x := 0
+	for each coherentComponent:
+		calculate minx, maxx, miny, maxy for coherentComponent
+		move all vertices of coherentComponent by (x - minx, -0.5 * (miny + maxy))
+		x := maxx + spacing
 
 # Bibliography
 
