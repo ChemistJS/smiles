@@ -23,6 +23,30 @@ Note that for some molecules it is impossible to flip the rings to meet above re
 
 Currently, in our implementation error in rings flipping is signaled by an exception.
 
+	procedure flipDFS(ring):
+		if ring was visited:
+			return
+		mark ring as visited
+		flipped := false
+
+		for each bond in ring:
+			for each neighbour in (rings that contain bond):
+				if neighbour != ring and neighbour was visited:
+					if (direction of bond in ring) == (direction of bond in neighbour):
+						if flipped:
+							signal an error
+						else
+							flip ring
+							flipped := true
+
+		for each bond in ring:
+			for each neighbour in (rings that contain bond):
+				flipDFS(neighbour)
+
+	mark all rings as not visited
+	for each ring:
+		flipDFS(ring)
+
 # Greedy positioning of the rings
 
 At this stage, each biconnected component is processed separately, and the coordinates of the vertices are calculated with respect to this component. For example, the vertex which is located at the junction of many biconnected components will have a number of different coordinates.
@@ -42,6 +66,35 @@ This algorithm works well for molecules which rings within each biconnected comp
 
 For particles that do not meet these conditions, the algorithm sets the position, however, visualization created based on them will not look good.
 
+	function bestTransformation(matchSet):
+		return transformaion t such that sum({abs(t(el[0]) - el[1])^2: el in matchSet}) is minimal
+
+	procedure greedyDFS(ring):
+		if ring was visited:
+			return
+		mark ring as visited
+
+		biconnectedComponent := biconnected component that contains this ring
+		regularPolygon := points of regular polygon of length same as ring length
+
+		matchSet := []
+		for i in [0 .. ring length - 1]:
+			if ring.atoms[i] has position set inside biconnectedComponent:
+				append (regularPolygon[i], ring.atoms[i] position inside biconnectedComponent) to matchSet
+		transformation := bestTransformation(matchSet)
+
+		for i in [0 .. ring length - 1]:
+			if ring.atoms[i] has not position set inside biconnectedComponent:
+				position of ring.atoms[i] inside biconnectedComponent := transformation(regularPolygon[i])
+
+		for each bond in ring:
+			for each neighbour in (rings that contain bond):
+				greedyDFS(neighbour)
+
+	mark all rings as not visited
+	for each ring:
+		greedyDFS(ring)
+
 # Trivial biconnected components
 
 At this point, in every biconnected component, which contains at least one cycle, the coordinates of all its vertices are set. Now the components without cycles are addressed. They may have one or two vertices, no more. We proceed as follows:
@@ -50,6 +103,12 @@ At this point, in every biconnected component, which contains at least one cycle
  * The component with two vertices: set their positions within this component to `(0, 0)` and `(d, 0)`
 
 where `d` is the length of the edge.
+
+	for each biconnectedComponent that has one atom:
+		biconnectedComponent.atoms[0] position inside biconnectedComponent := (0, 0)
+	for each biconnectedComponent that has two atoms:
+		biconnectedComponent.atoms[0] position inside biconnectedComponent := (0, 0)
+		biconnectedComponent.atoms[1] position inside biconnectedComponent := (d, 0)
 
 # Thermal setting of the rings
 
@@ -69,6 +128,31 @@ The result of these operations is to obtain, for each vertex, arrays of desired 
 
 The average may be weighted - for example, if we want the smaller the rings to have a greater "priority of regularity" we can count positions in the smaller rings with a greater weight than those of large rings.
 
+	procedure thermalStep(component):
+		for each atom in component:
+			atom.contributions := []
+
+		for each ring in component:
+			regularPolygon := points of regular polygon of length same as ring length
+
+			matchSet := []
+			for i in [0 .. ring length - 1]:
+				if ring.atoms[i] has position set inside biconnectedComponent:
+					append (regularPolygon[i], ring.atoms[i] position inside biconnectedComponent) to matchSet
+			transformation := bestTransformation(matchSet)
+
+			for i in [0 .. ring length - 1]:
+				append (weight: 1, position: transformation(regularPolygon[i]) to ring.atoms[i].contributions
+
+		for each atom in component:
+			if atom.contributions length > 0:
+				newPosition := average calculated from atom.contributions
+				atom position inside component := newPosition
+
+	while we decided to improve molecule layout:
+		for each biconnectedComponent:
+			thermalStep(biconnectedComponent)
+
 # Aligning biconnected components
 
 At this stage, we have set a position of each vertex inside each biconnected component to which it belongs. For positions to be useful in visualization, the coordinates should be aligned between the components. Alignment is understood as finding the translation vector and rotation angle, that must be applied to the coordinates inside the component to get absolute coordinates, for each component.
@@ -82,9 +166,13 @@ Biconnected components within a single coherent piece of graph form a tree. It s
 
 In the current implementation, first in suffix (it has no meaning) order local transformations are determined - that is for the component `A` and some its child (in the sense of the tree) `B` a transformation is calculated. This transformation when applied to the component `B` will cause the junction to "fit" to the component `A`. Then, in the prefix order components are transformed according to the previously calculated values, except that the transformations are pushed down the tree and accumulated for the components to fit together globally.
 
+	// TODO
+
 # Positioning connected parts
 
 The final step is to move apart coherent subgraphs so they will be drawn in other places and will not overlap graphically. For this, any coherent part of the graph gets calculated maximal and minimal x and y coordinates reached by the vertices of the part. Then, based on the calculated values subgraphs are moved so they will be centered vertically and horizontally stacked one behind the other, with predetermined intervals in between.
+
+	// TODO
 
 # Bibliography
 
