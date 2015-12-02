@@ -166,7 +166,31 @@ Biconnected components within a single coherent piece of graph form a tree. It s
 
 In the current implementation, first in suffix (it has no meaning) order local transformations are determined - that is for the component `A` and some its child (in the sense of the tree) `B` a transformation is calculated. This transformation when applied to the component `B` will cause the junction to "fit" to the component `A`. Then, in the prefix order components are transformed according to the previously calculated values, except that the transformations are pushed down the tree and accumulated for the components to fit together globally.
 
-	// TODO
+	procedure computeTransformations(tree):
+		for childTree in children of tree:
+			computeTransformations(childTree)
+
+		rootComponent := root component of tree
+		for each atom in rootComponent:
+			children := biconnected components that contains atom \ rootComponent
+			if |children| > 0:
+				compute transformations relative to rootComponent for children
+
+	procedure performTransformations(tree, transformation):
+		rootComponent := root component of tree
+		rootAtoms := atoms of rootComponent
+		apply transformation to rootAtoms
+
+		for childTree in children of tree:
+			relativeTransformation := transformation of childTree relative to rootComponent
+			totalTransformation := compose transformation * relativeTransformation (relativeTransformation is applied first)
+			performTransformations(childTree, totalTransformation)
+
+	forest := set of trees of biconnected components in molecule
+
+	for each tree in forest:
+		computeTransformations(tree)
+		performTransformations(tree, identity)
 
 # Positioning connected parts
 
